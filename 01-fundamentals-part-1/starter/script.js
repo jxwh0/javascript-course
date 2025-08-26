@@ -177,3 +177,66 @@ console.log(`Math works: ${2 + 3} equals five`);
 console.log(`Comparisons too: ${5 > 3}`);
 
 console.log(`Just a regular string...`);
+
+const inputYear = "1991";
+console.log(Number(inputYear), inputYear);
+
+console.log(Number(inputYear) + 18);
+
+console.log(Number("Jonas"));
+console.log(typeof NaN);
+
+console.log(String(23), 23);
+console.log(typeof String(23));
+
+console.log("I'm " + 23 + " years old");
+console.log("23" - "10" - 3);
+console.log("23" / "2");
+console.log("23" * "2");
+
+let n = "1" + 1;
+n = n - 1;
+console.log(n);
+
+const age = '18';
+if (age === 18) console.log('You just became an adult :D (strict)');
+if (age == 18) console.log('You just became an adult :D (loose)');
+
+console.log('18' === 18);
+console.log('18' == 18); 
+console.log(18 === 18);
+
+console.log('0' == 0)
+console.log(0 == false);
+console.log('0' == false);
+console.log(null == undefined);
+
+console.log('' == 0);
+console.log('   ' == 0);
+
+const favourite = Number(prompt("What's your favorite number?"));
+console.log(favourite);
+console.log(typeof favourite);
+
+if (favourite === 23) {
+  console.log("Cool! 23 is an amazing number!");
+}
+else if (favourite === 7) {
+  console.log("7 is also a cool number");
+} 
+else if (favourite === 9) {
+  console.log("9 is also a cool number");
+}
+else {
+  console.log("Number is not 23 or 7 or 9");
+}
+
+if (favourite !== 23) console.log("Why not 23?");
+
+
+// logical operators  
+const hasDriversLicense = true; // A
+const hasGoodVision = true; // B
+
+console.log('AND OPERATOR: ${hasDriversLicense && hasGoodVision}');
+ // true
