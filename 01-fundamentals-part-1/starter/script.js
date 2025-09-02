@@ -214,7 +214,7 @@ console.log(null == undefined);
 console.log('' == 0);
 console.log('   ' == 0);
 
-const favourite = Number(prompt("What's your favorite number?"));
+const favourite = Number(("What's your favorite number?"));
 console.log(favourite);
 console.log(typeof favourite);
 
@@ -238,5 +238,67 @@ if (favourite !== 23) console.log("Why not 23?");
 const hasDriversLicense = true; // A
 const hasGoodVision = true; // B
 
-console.log('AND OPERATOR: ${hasDriversLicense && hasGoodVision}');
- // true
+console.log('AND OPERATOR: ${hasDriversLicense && hasGoodVision}');// true   
+console.log('OR OPERATOR: ${hasDriversLicense || hasGoodVision}');// true
+console.log('NOT OPERATOR: ${!hasDriversLicense}');// false
+
+const isTired = false; // C
+console.log(hasDriversLicense && hasGoodVision && isTired);// true
+
+if (hasDriversLicense && hasGoodVision && !isTired) {
+  console.log("Jehu is able to drive!");
+}
+else {
+  console.log("Someone else should drive...");
+}agee = 20;
+const hasPermission = true;
+const hasExperience = true;
+
+if (age >= 18 && hasPermission && hasExperience) {
+  console.log('Approved to drive');
+} else {
+  console.log('Not approved to drive');
+}
+
+console.log('Age 20, permission true, experience false', (age >= 18 && hasPermission && false));
+
+// Club Entry System
+// Entry allowed if: (age >= 21 AND hasID) OR isVIP
+
+function checkEntry(age, hasID, isVIP) {
+  if ((age >= 21 && hasID) || isVIP) {
+    console.log(`Age: ${age}, hasID: ${hasID}, isVIP: ${isVIP} → Welcome to the club!`);
+  } else {
+    console.log(`Age: ${age}, hasID: ${hasID}, isVIP: ${isVIP} → Sorry, you cannot enter`);
+  }
+}
+
+checkEntry(19, true, false);   // too young, not VIP
+checkEntry(22, true, false);   // old enough + ID
+checkEntry(22, false, false);  // old enough but no ID
+checkEntry(19, false, true);   // VIP override
+checkEntry(25, false, true);   // VIP works regardless of ID
+checkEntry(20, true, false);   // not 21 yet
+
+const Age = 17;
+
+const drink = age >= 18 ? 'wine' : 'water';
+console.log(drink);
+
+let drink2
+if (age >= 18) {
+  drink2 = 'wine';
+} else {
+  drink2 = 'water';
+}  
+console.log(drink2);
+
+console.log(`I like to drink ${age >= 18 ? 'wine' : 'water'}`);
+
+// Test data
+const bill = 275; 
+const tip = (bill >= 50 && bill <= 300) ? bill * 0.15 : bill * 0.20;
+const total = bill + tip;
+
+// Output
+console.log(`The bill was ${bill}, the tip was ${tip}, and the total value ${total}`);
