@@ -583,3 +583,131 @@ function calculateAverageScoreFixed(scores) {
 // Test the fixed function
 const fixedResult = calculateAverageScoreFixed(testScores);
 console.log('Fixed result:', fixedResult); // Should show correct average: 87.8
+
+// Comprehensive debugging verification
+console.group('Debugging Verification Tests');
+
+// Test 1 - Normal case
+const normalScores = [85, 92, 78, 96, 88];
+const normalResult = calculateAverageScoreFixed(normalScores);
+console.log('Normal case result:', normalResult);
+
+// Test 2 - Edge case with invalid data
+const mixedScores = [85, 'invalid', 92, null, 78];
+const mixedResult = calculateAverageScoreFixed(mixedScores);
+console.log('Mixed data result:', mixedResult);
+
+// Test 3 - Error case with invalid input
+const errorResult = calculateAverageScoreFixed('not an array');
+console.log('Error case result:', errorResult);
+
+// Test 4 - Edge case with empty array
+const emptyResult = calculateAverageScoreFixed([]);
+console.log('Empty array result:', emptyResult);
+
+console.groupEnd();
+
+console.log('Systematic debugging process successfully applied!');
+console.log(
+  'All bugs identified, isolated, investigated, fixed, and prevented'
+);
+
+// Developer Skills Hour 4 - Advanced Problem-Solving & Real-World Challenges
+('use strict');
+
+console.log('=== HOUR 4: ADVANCED PROBLEM-SOLVING MASTERY ===');
+
+/*
+Your Developer Transformation Today:
+Hour 1: Professional tools and environment ✅
+Hour 2: Problem-solving framework and mindset ✅  
+Hour 3: Research and debugging mastery ✅
+Hour 4: Apply everything to real challenges
+
+You're now solving unfamiliar problems independently.
+*/
+
+console.log('Ready to tackle complex problems using systematic approaches');
+console.log('Challenge: Build solutions that work under pressure');
+
+const data1 = [17, 21, 23];
+const data2 = [12, 5, -5, 0, 4];
+
+function printForecast(arr) {
+  if (!Array.isArray(arr) || arr.length === 0) {
+    console.log('No forecast data.');
+    return;
+  }
+
+  let result = '...';
+  for (let i = 0; i < arr.length; i++) {
+    result += `${arr[i]}°C in ${i + 1} days...`;
+  }
+
+  console.log(result);
+}
+
+// Tests
+printForecast(data1); // ...17°C in 1 days...21°C in 2 days...23°C in 3 days...
+printForecast(data2); // ...12°C in 1 days...5°C in 2 days...-5°C in 3 days...0°C in 4 days...4°C in 5 days...
+
+function printForecastMap(arr) {
+  if (!Array.isArray(arr) || arr.length === 0)
+    return console.log('No forecast data.');
+  console.log('...' + arr.map((t, i) => `${t}°C in ${i + 1} days...`).join(''));
+}
+function printForecastSmart(arr) {
+  if (!Array.isArray(arr) || arr.length === 0)
+    return console.log('No forecast data.');
+  let out = '...';
+  for (let i = 0; i < arr.length; i++) {
+    const dayText = i + 1 === 1 ? 'day' : 'days';
+    out += `${arr[i]}°C in ${i + 1} ${dayText}...`;
+  }
+  console.log(out);
+}
+
+////
+function analyzeWorkWeek(dailyHours) {
+  if (!Array.isArray(dailyHours) || dailyHours.length !== 7) {
+    throw new Error('Input must be an array of 7 numbers (hours for Mon-Sun).');
+  }
+
+  // Total hours
+  const totalHours = dailyHours.reduce((sum, h) => sum + h, 0);
+
+  // Average daily hours (round to 1 decimal)
+  const averageHours = Math.round((totalHours / dailyHours.length) * 10) / 10;
+
+  // Max hours and corresponding day name
+  const maxHours = Math.max(...dailyHours);
+  const maxDayIndex = dailyHours.indexOf(maxHours);
+  const dayNames = [
+    'Monday',
+    'Tuesday',
+    'Wednesday',
+    'Thursday',
+    'Friday',
+    'Saturday',
+    'Sunday',
+  ];
+  const maxDay = dayNames[maxDayIndex];
+
+  // Days worked (non-zero)
+  const daysWorked = dailyHours.filter(h => h > 0).length;
+
+  // Full-time week?
+  const isFullTime = totalHours >= 35;
+
+  return {
+    totalHours,
+    averageHours,
+    maxDay,
+    daysWorked,
+    isFullTime,
+  };
+}
+
+// Example test
+const weekly = [7.5, 8, 6.5, 0, 8.5, 4, 0];
+console.log(analyzeWorkWeek(weekly));
