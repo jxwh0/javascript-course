@@ -443,4 +443,90 @@
 // console.log(`\nAfter updates:`);
 // console.log(user.getSummary());
 
-//4th
+// 4th Exercise: DOM Manipulation and Events
+
+// querySelector examples
+const message = document.querySelector('.message');
+console.log(message);
+
+const button = document.querySelector('.btn');
+console.log(button);
+
+const heading = document.querySelector('h1');
+console.log(heading);
+
+console.log(message.textContent);
+console.log(button.id);
+console.log(heading.tagName);
+console.log(heading.textContent);
+
+// getElementById
+const buttonByID = document.getElementById('btn');
+console.log(buttonByID);
+console.log(buttonByID === button);
+
+// querySelectorAll
+const allParagraphs = document.querySelectorAll('p');
+console.log(allParagraphs);
+console.log(allParagraphs[0]);
+
+// textContent
+console.log(message.textContent);
+message.textContent = 'Correct Number!';
+console.log(message.textContent);
+
+// innerHTML
+message.innerHTML = '<strong>Correct Number!</strong>';
+
+// innerText
+console.log(message.innerText);
+
+// Input element values
+const input = document.querySelector('.guess');
+console.log(input.value);
+input.value = 'Default Text';
+console.log(input.value);
+
+// Styling heading
+heading.style.color = 'red';
+heading.style.backgroundColor = 'blue';
+heading.style.fontSize = '5rem';
+
+// Styling button
+button.style.padding = '20px';
+button.style.borderRadius = '5px';
+button.style.backgroundColor = 'green';
+button.style.color = 'white';
+
+// Event listeners (user interactions)
+button.addEventListener('click', function () {
+  console.log('Button was clicked');
+  message.textContent = "Button was clicked";
+  message.style.color = 'blue';
+});
+
+// Count button clicks
+let clickCount = 0;
+button.addEventListener('click', function () {
+  clickCount++;
+  button.textContent = `Button clicked ${clickCount} times`;
+  button.style.backgroundColor = `hsl(${clickCount * 30}, 100%, 50%)`;
+});
+
+// Input event listener
+const display = document.querySelector('.message');
+input.addEventListener('input', function () {
+  const userInput = input.value;
+  display.textContent = `User typed: ${userInput}`;
+  display.style.fontSize = `${userInput.length + 10}px`;
+});
+
+// Keyboard events = responds to specific key
+input.addEventListener('keydown', function (event) {
+  console.log(`Key pressed "${event.key}"`);
+
+  if (event.key === 'Enter') {
+    display.textContent = `You pressed Enter! Text was: ${input.value}`;
+    input.value = "";
+  }
+});
