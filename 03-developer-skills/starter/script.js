@@ -711,3 +711,60 @@ function analyzeWorkWeek(dailyHours) {
 // Example test
 const weekly = [7.5, 8, 6.5, 0, 8.5, 4, 0];
 console.log(analyzeWorkWeek(weekly));
+
+////////////////////////////////////
+// FINAL INTEGRATION: Debug and Enhance Legacy Code
+
+// Here's the buggy legacy code you need to fix
+function legacyForecastFunction(temperatures) {
+  // Multiple bugs hidden in this code!
+  var result = "";
+  for (var i = 1; i <= temperatures.length; i++) {
+    result = result + temperatures[i] + " degrees in day " + i + ", ";
+  }
+  return result;
+}
+
+// Test the buggy function to see what goes wrong
+const testData = [15, 18, 22, 19];
+console.log("Buggy function output:", legacyForecastFunction(testData));
+
+////////////////////////////////////
+// SYSTEMATIC DEBUGGING AND ENHANCEMENT
+
+// Completely fixed and enhanced version
+function enhancedForecastFunction(temperatures, options = {}) {
+  // Step 5 - PREVENT: Add comprehensive input validation
+  if (!Array.isArray(temperatures) || temperatures.length === 0) {
+    console.error("Invalid input: temperatures must be a non-empty array");
+    return "";
+  }
+
+  // Step 4 - FIX: Use modern JavaScript with proper declarations
+  const { unit = "°C", separator = "...", includeIndex = true } = options;
+
+  // Step 4 - FIX: Correct loop bounds and string building
+  let result = "";
+
+  for (let i = 0; i < temperatures.length; i++) {
+    const dayNumber = includeIndex ? i + 1 : i;
+    result += `${temperatures[i]}${unit} in ${dayNumber} days${separator}`;
+  }
+
+  // Step 5 - PREVENT: Return clean result without trailing separator
+  return separator + result.slice(0, -separator.length);
+}
+
+// Test the enhanced function with multiple configurations
+console.log("Enhanced function (default):", enhancedForecastFunction(testData));
+console.log(
+  "Enhanced function (custom):",
+  enhancedForecastFunction(testData, {
+    unit: "°F",
+    separator: " | ",
+    includeIndex: true,
+  })
+);
+
+console.log("🎯 Complete developer skills successfully applied!");
+console.log("Legacy code debugged, fixed, and enhanced systematically");
