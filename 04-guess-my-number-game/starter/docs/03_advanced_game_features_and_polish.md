@@ -181,18 +181,19 @@ git commit
 
 Copy this commit message:
 
-```feat: add visual feedback, validation, and final polish
+- feat: add visual feedback, validation, and final polish
 
 - Implement win/lose visual feedback via background color changes
 - Add input validation with helpful error messages and early returns
 - Clear inputs and add Game Over messages for end states
 - Ensure restart fully resets UI and state to a clean slate
 - Prepare project for Hour 4 code organization and improvements
-```
+
+````
 
 ```bash
 git push origin main
-```
+````
 
 ## 🔧 Troubleshooting
 
