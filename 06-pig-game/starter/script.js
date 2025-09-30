@@ -101,8 +101,10 @@ btnHold.addEventListener('click', function () {
 // New game button functionality
 btnNew.addEventListener('click', init);
 
-// Test game state (optional)
+// Debug logs
 console.log('Scores:', scores);
 console.log('Current Score:', currentScore);
 console.log('Active Player:', activePlayer);
 console.log('Playing:', playing);
+console.log('Player 0 active:', player0El.classList.contains('player--active'));
+console.log('Player 1 active:', player1El.classList.contains('player--active'));
