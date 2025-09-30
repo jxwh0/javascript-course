@@ -162,3 +162,36 @@ console.log('copy hobbies:', shallowCopy.hobbies);
 
 const anotherCopy = Object.assign({}, original);
 console.log('Object.assign copy:', anotherCopy);
+
+const deepOriginal = {
+  name: 'Charlie',
+  age: 32,
+  address: { city: 'Paris', country: 'France' },
+  hobbies: ['travel', 'photography'],
+};
+
+// Modern deep copy with structuredClone
+const deepCopy = structuredClone(deepOriginal);
+
+deepCopy.address.city = 'London';
+deepCopy.hobbies.push('cooking');
+
+console.log('original address:', deepOriginal.address); // { city: 'Paris', country: 'France' }
+console.log('copy address:', deepCopy.address); // { city: 'London', country: 'France' }
+console.log('original hobbies:', deepOriginal.hobbies); // ['travel', 'photography']
+console.log('copy hobbies:', deepCopy.hobbies);
+
+const problemObject = {
+  name: 'Test',
+  date: new Date(),
+  method: function () {
+    return 'hello';
+  },
+  undefinedValue: undefined,
+};
+
+const brokenCopy = JSON.parse(JSON.stringify(problemObject));
+console.log('Broken copy:', brokenCopy);
+
+const workingCopy = structuredClone(problemObject);
+console.log('Working copy:', workingCopy);
