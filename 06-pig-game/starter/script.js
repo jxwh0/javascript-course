@@ -16,7 +16,7 @@ const btnRoll = document.querySelector('.btn--roll');
 const btnHold = document.querySelector('.btn--hold');
 const btnNew = document.querySelector('.btn--new');
 
-// Initialize game
+// Initial init function
 const init = function () {
   scores = [0, 0];
   currentScore = 0;
@@ -38,12 +38,9 @@ init();
 
 // Function to switch player
 const switchPlayer = function () {
-  // Reset current score of active player
   document.getElementById(`current--${activePlayer}`).textContent = 0;
   currentScore = 0;
-  // Switch active player
   activePlayer = activePlayer === 0 ? 1 : 0;
-  // Toggle active player UI
   player0El.classList.toggle('player--active');
   player1El.classList.toggle('player--active');
 };
@@ -51,37 +48,28 @@ const switchPlayer = function () {
 // Roll dice functionality
 btnRoll.addEventListener('click', function () {
   if (playing) {
-    // 1. Generate a random dice roll
     const dice = Math.trunc(Math.random() * 6) + 1;
-
-    // 2. Display dice
     diceEl.classList.remove('hidden');
     diceEl.src = `dice-${dice}.png`;
 
-    // 3. Check for rolled 1
     if (dice !== 1) {
-      // Add dice to current score
       currentScore += dice;
       document.getElementById(`current--${activePlayer}`).textContent =
         currentScore;
     } else {
-      // Switch to next player
       switchPlayer();
     }
   }
 });
 
-// Hold button functionality
+// First hold button event listener (keep this, comment out the duplicate below)
 btnHold.addEventListener('click', function () {
   if (playing) {
-    // 1. Add current score to active player's total score
     scores[activePlayer] += currentScore;
     document.getElementById(`score--${activePlayer}`).textContent =
       scores[activePlayer];
 
-    // 2. Check if player's score is >= 100
     if (scores[activePlayer] >= 100) {
-      // Finish the game
       playing = false;
       diceEl.classList.add('hidden');
 
@@ -92,19 +80,83 @@ btnHold.addEventListener('click', function () {
         .querySelector(`.player--${activePlayer}`)
         .classList.remove('player--active');
     } else {
-      // Switch to next player
       switchPlayer();
     }
   }
 });
 
-// New game button functionality
-btnNew.addEventListener('click', init);
+/* 
+// Commented out duplicate hold event listener to avoid conflicts
+btnHold.addEventListener('click', function () {
+  if (playing && currentScore > 0) {
+    scores[activePlayer] += currentScore;
+    document.getElementById(`score--${activePlayer}`).textContent =
+      scores[activePlayer];
+
+    if (scores[activePlayer] >= 100) {
+      playing = false;
+      diceEl.classList.add('hidden');
+
+      document
+        .querySelector(`.player--${activePlayer}`)
+        .classList.add('player--winner');
+
+      document
+        .querySelector(`.player--${activePlayer}`)
+        .classList.remove('player--active');
+    } else {
+      switchPlayer();
+    }
+  }
+});
+*/
+
+// Rename second init function to avoid duplicate declaration
+const initGame = function () {
+  scores = [0, 0];
+  currentScore = 0;
+  activePlayer = 0;
+  playing = true;
+
+  score0El.textContent = 0;
+  score1El.textContent = 0;
+  current0El.textContent = 0;
+  current1El.textContent = 0;
+
+  diceEl.classList.add('hidden');
+
+  player0El.classList.remove('player--winner');
+  player1El.classList.remove('player--winner');
+  player0El.classList.add('player--active');
+  player1El.classList.remove('player--active');
+};
+
+// Comment out duplicate btnNew event listener and use this one
+// btnNew.addEventListener('click', init);
+btnNew.addEventListener('click', initGame);
 
 // Debug logs
 console.log('Scores:', scores);
 console.log('Current Score:', currentScore);
 console.log('Active Player:', activePlayer);
 console.log('Playing:', playing);
+console.log('Player 0 active:', player0El.classList.contains('player--active'));
+console.log('Player 1 active:', player1El.classList.contains('player--active'));
+
+// Additional debug logs
+console.log('Current scores:', scores);
+console.log('Win condition met:', scores[activePlayer] >= 100);
+console.log('Game playing:', playing);
+
+console.log('Game reset - scores:', scores);
+console.log('Game reset - playing:', playing);
+console.log('Game reset - active player:', activePlayer);
+
+console.log('Scores:', scores);
+console.log('Current Score:', currentScore);
+console.log('Active Player:', activePlayer);
+console.log('Playing:', playing);
+console.log('Player 0 winner:', player0El.classList.contains('player--winner'));
+console.log('Player 1 winner:', player1El.classList.contains('player--winner'));
 console.log('Player 0 active:', player0El.classList.contains('player--active'));
 console.log('Player 1 active:', player1El.classList.contains('player--active'));
